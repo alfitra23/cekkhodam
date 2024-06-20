@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb); /* Gradien warna biru dan ungu */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url(bg2.jpeg);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2); /* Warna latar belakang transparan */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nama-input {
+            width: 45%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.8); /* Warna latar belakang kotak teks nama */
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .asal-kota {
+            width: 40%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.8); /* Warna latar belakang kotak teks nama */
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .nama-input:focus {
+            background: rgba(255, 255, 255, 1);
+        }
+        .asal-kota:focus {
+            background:  rgba(255, 255, 255, 1);;
+        }
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .akurasi {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8); /* Warna teks akurasi */
+        }
+        .copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8); 
+        }
+    </style>
+    <title>Check Khodam Online by Alfitraa</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Check Khodam Online</h1>
+        <form id="KhodamForm">
+            <input type="text" id="nama" class="nama-input" placeholder="Masukkan nama Anda" required>
+            <input type="text" id="asal" class="asal-kota""
+placeholder="Masukkan asal kota Anda" required>
+            <button type="submit">Cek Khodam</button>
+        </form>
+        <div class="result" id="result"></div>
+        <div class="akurasi" id="akurasi"></div>
+        <div class="copyright">
+            <p>copyright 2024 | Alfitraa</p>
+    </div>
+    <script>
+        // Daftar Khodam Tersedia
+const Khodamlist = [
+    "Khodam macan putih",
+    "Khodam rice cooker",
+    "Khodam DJ",
+    "Khodam ular sungai",
+    "Khodam mobile legend",
+    "Khodam layang-layang",
+    "Khodam Jin qorin",
+    "Khodam Kunti Bogel",
+    "Khodam tidak ada",
+    "Khodam kipas angin",
+    "Khodam tidur",
+    "Khodam makan",
+    "Khodam watu",
+    "Khodam Setan Gundul",
+    "Khodam Gunduruwo",
+    "Khodam Air mata sungai",
+    "Khodam Badut",
+    "Khodam Balon",
+    "Khodam kera berkaki tujuh",
+    "khodam nenek moyang jin",
+    "Khodam jin silver"
+];
+
+// Fungsi untuk memilih Khodam secara acak
+function pilihKhodam(event) {
+    event.preventDefault(); // Mencegah formulir untuk melakukan submit
+
+    const nama = document.getElementById("nama").value;
+    const resultDiv = document.getElementById("result");
+
+    // Kosongkan hasil sebelum menampilkan hasil baru
+    resultDiv.textContent = "";
+
+    if (nama) {
+        const randomIndex = Math.floor(Math.random() * Khodamlist.length);
+        const Khodamterpilih = Khodamlist[randomIndex];
+        resultDiv.textContent = `Nama Anda adalah ${nama} dan khodam Anda adalah ${Khodamterpilih}.`;
+
+        // Hapus hasil setelah 5 detik (5000 milidetik)
+        setTimeout(() => {
+            resultDiv.textContent = ""; 
+        }, 3000);
+
+    } else {
+        resultDiv.textContent = "Nama Anda tidak boleh kosong.";
+    }
+}
+
+// Menambahkan event listener ke form saat dokumen sudah dimuat
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("KhodamForm").addEventListener("submit", pilihKhodam); 
+});
+
+        const form = document.getElementById('KhodamForm');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const nama = document.getElementById('nama').value;
+            if (nama) {
+                const randomIndex = Math.floor(Math.random() * 100);
+                document.getElementById('result').textContent = `Nama Anda adalah ${nama}.`;
+                document.getElementById('akurasi').textContent = `Akurasi: ${randomIndex}%`;
+            } else {
+                document.getElementById('result').textContent = 'Nama Anda tidak boleh kosong.';
+            }
+        });
+    </script>
+</body>
+</html>
